@@ -1,42 +1,74 @@
+import { Link } from 'react-router-dom';
+import {useCart} from '../../context/CartContext';
+
 function Header() {
+  const {cart} = useCart();
+  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
-    <header className="bg-white sticky top-0 z-50 shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <h1 className="text-3xl font-serif font-bold text-gray-900 tracking-tight">
-            Haiti Bites
-          </h1>
-          
-          {/* Navigation */}
-          <nav className="flex space-x-8">
-            <a
-              href="#home"
-              className="text-gray-900 hover:text-amber-600 
-                         text-lg font-medium transition-colors"
-            >
-              Home
-            </a>
-            <a
-              href="#menu"
-              className="text-gray-900 hover:text-amber-600 
-                         text-lg font-medium transition-colors"
-            >
-              Menu
-            </a>
-            <a
-              href="#contact"
-              className="text-gray-900 hover:text-amber-600 
-                         text-lg font-medium transition-colors"
-            >
-              Contact
-            </a>
-          </nav>
-        </div>
+    <header className="bg-white text-gray-900 p-4 sticky top-0 z-10 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-2xl font-sans font-bold">Haiti Bites</h1>
+        <nav className="space-x-4">
+          <Link to="/" className="hover:text-gray-600">Home</Link>
+          <Link to="/menu" className="hover:text-gray-600">Menu</Link>
+          <Link to="/cart" className="hover:text-gray-600">
+            Cart {itemCount > 0 && `(${itemCount})`}
+          </Link> 
+          <Link to="/#contact" className="hover:text-gray-600">Contact</Link>
+        </nav>
       </div>
     </header>
   );
 }
+
+export default Header;
+
+
+
+
+// function Header() {
+//   return (
+//     <header className="bg-white sticky top-0 z-50 shadow-md">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="flex justify-between items-center h-16">
+//           {/* Logo */}
+//           <h1 className="text-3xl font-serif font-bold text-gray-900 tracking-tight">
+//             Haiti Bites
+//           </h1>
+          
+//           {/* Navigation */}
+//           <nav className="flex space-x-8">
+//             <a
+//               href="#home"
+//               className="text-gray-900 hover:text-amber-600 
+//                          text-lg font-medium transition-colors"
+//             >
+//               Home
+//             </a>
+//             <a
+//               href="#menu"
+//               className="text-gray-900 hover:text-amber-600 
+//                          text-lg font-medium transition-colors"
+//             >
+//               Menu
+//             </a>
+//             <a
+//               href="#contact"
+//               className="text-gray-900 hover:text-amber-600 
+//                          text-lg font-medium transition-colors"
+//             >
+//               Contact
+//             </a>
+//           </nav>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+
+
 
 
 // function Header() {
@@ -146,4 +178,4 @@ function Header() {
     );
   } */
   
-  export default Header;
+  // export default Header;
